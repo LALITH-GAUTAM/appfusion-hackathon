@@ -1,0 +1,38 @@
+AppFusion QA fixture 0042
+Start with an empty fridge in a fresh QA session.
+
+Scan, review, and confirm
+1. Scan grocery-receipt-0042.png. Review shows eggs, spinach, and rice.
+2. Change EGGS LRG to Eggs before confirming. If recognition already
+   displays Eggs, change the name to Large eggs to exercise the edit.
+3. Confirm once, then reopen inventory. Expect exactly three entries,
+   one purchased package each of eggs, spinach, and rice. Each entry
+   has quantity 1 and a nonempty unit. The saved egg name matches the
+   review edit. Prices, totals, and receipt metadata are excluded.
+4. Check that the confirm response and GET /api/inventory agree.
+
+Meal acceptance
+- Generate a meal only after confirming. POST /api/meals reads the
+  saved inventory. The result has a title and actionable steps.
+- Spinach and egg fried rice is one acceptable result. The recipe
+  should use the confirmed eggs, spinach, and rice and respect their
+  amounts. It should say to cook the rice first if starting dry.
+- Every ingredient listed as on hand maps to confirmed inventory.
+  Anything extra belongs under optional missing ingredients. For
+  example, soy sauce may be suggested, and the recipe must work if
+  the user skips it.
+
+Failure checks
+- Unreadable receipt. Submit a valid image with no readable receipt.
+  Expect 422 and guidance to retry. Inventory stays empty.
+- Empty fridge. Request a meal before confirmation. Expect 409 and
+  guidance to add groceries. The app stays usable.
+- Offline. Disconnect with inventory visible, request a meal, then
+  reconnect and retry. Expect clear feedback and preserved inventory.
+- AI unavailable. While online, induce a meal service error or
+  timeout. Expect 503 for a service outage, a loading state that
+  ends, preserved inventory, and successful retry after recovery.
+- Confirm retry. Let the first confirmation write succeed while
+  dropping its response in the QA environment. Retry the same
+  receipt and edited items, then reload inventory. Expect exactly
+  the same three entries and quantities as after one confirmation.
