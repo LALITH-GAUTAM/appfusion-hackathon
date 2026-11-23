@@ -1,26 +1,20 @@
-![Tapp’s lavender cursor mascot beside the Tapp wordmark](tapp/readme-cover.jpg)
+# Tapp
 
-# Tapp at AppFusion
+Tell your iPhone what you want to find. Tapp follows the request inside the app, using what’s on screen to find the next control. For AppFusion, the example is a voice search for Daft Punk in Spotify.
 
-Tapp helps iPhone users who prefer voice input search inside an app. Tell it what you’re looking for, and it uses the current screen to decide where to tap and checks that the results appear.
+[Try the iOS simulator preview](tapp/README.md#download-and-run-tapp)
 
-**[Watch the 20-second demo](tapp/demo-footage/Tapp-In-Action-Refined-Split.mp4)** · [Try the simulator preview](tapp/README.md#download-and-run-tapp) · [View the pitch deck](tapp/Tapp-AppFusion.pptx)
+<a href="tapp/screenshots/appfusion-home.png"><img src="tapp/screenshots/appfusion-home.png" alt="Tapp home screen showing “How can I help?”, the Message Tapp field, and the microphone button" width="300"></a>
 
-## From a voice request to Spotify results
+*AppFusion preview on iPhone 17 Pro Simulator, November 23.*
 
-> “Open up Spotify and search for Daft Punk.”
+## Demo
 
-[![Three iPhone screens in sequence. Tapp hears the request, opens Spotify Search, and enters Daft Punk. The matching artist appears at the top of the results.](tapp/readme-demo.jpg)](tapp/screenshots/)
-
-The October 30 iPhone recording follows the request through to the search results. The 20-second edit shortens the waits. [View the full-size screenshots](tapp/screenshots/)
-
-**AppFusion category** · Community and Accessibility
-
-**Simulator access** · The preview requires repository access. The app opens without a code. Live AI requires a tester code.
+The [20-second Spotify recording](tapp/demo-footage/Tapp-In-Action-Refined-Split.mp4) shows the voice request through to the matching artist. It was recorded on an iPhone on October 30 with the earlier interface.
 
 ## Team resources
 
-[Submission notes and final device checks](tapp/README.md) · [Demo footage and editing notes](tapp/demo-footage/README.md)
+[Submission notes and device checks](tapp/README.md) · [Pitch deck](tapp/Tapp-AppFusion.pptx)
 
 <details>
 <summary><strong>Event schedule, submission checklist, and judging rubric</strong></summary>

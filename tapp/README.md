@@ -43,7 +43,8 @@ It builds the selected commit, publishes a versioned ZIP, and updates the **Curr
 
 - [Editable four-slide deck](Tapp-AppFusion.pptx)
 - [Existing iPhone footage and editing notes](demo-footage/)
-- [Three stills from the October 30 recording](screenshots/) showing the spoken request, the destination Search screen, and matching results
+- [November 23 home screen from the AppFusion simulator preview](screenshots/appfusion-home.png)
+- October 30 iPhone recording stills · [Voice request](screenshots/01-voice-request.png) · [Spotify Search](screenshots/02-spotify-search.png) · [Matching results](screenshots/03-search-results.png)
 
 ## Verification so far
 
@@ -56,7 +57,7 @@ It builds the selected commit, publishes a versioned ZIP, and updates the **Curr
 2. Try a spoken prompt that omits the search term. Check whether Tapp asks for it or shows a clear way to recover. Note the actual result and any change made after testing.
 3. Repeat with connectivity disabled. Check the message and that the user can regain control. Reconnect and try again.
 4. Use Stop during a task and verify that screen actions end. On the demo account, check that text, status and Stop are readable in the recording.
-5. Make a 2–3 minute video. Use the October recording as a dated before example, explain what changed during the event, and show the current build's working core and AI flow. Include three to five app screenshots. The available stills show the prior build.
+5. Make a 2–3 minute video. Use the October recording as a dated before example, explain what changed during the event, and show the current build's working core and AI flow. Include three to five app screenshots. The three Spotify stills show the prior build.
 6. Put the final video, screenshots and deck into one Google Drive folder. Set access to “Anyone with the link can view.” Confirm that the Drive and submitted repo links both open for a judge. This team repo is currently private.
 7. Confirm the registered team name, full names and contact email. File the form Monday, November 23, by 2:00 p.m. Kamloops time.
 
