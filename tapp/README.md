@@ -18,7 +18,7 @@ Tapp is an iPhone assistant for people who prefer speaking a request to tapping 
 
 ## Download and run Tapp
 
-Get `Tapp-iOS-Simulator.zip` from the [AppFusion preview release](https://github.com/LALITH-GAUTAM/appfusion-hackathon/releases/tag/tapp-appfusion-preview). GitHub access to this private repository is required.
+Use the **Current build** download on the [AppFusion preview release](https://github.com/LALITH-GAUTAM/appfusion-hackathon/releases/tag/tapp-appfusion-preview). GitHub access to this private repository is required.
 
 On an Apple silicon Mac with Xcode 27.1 and an iOS 27 simulator, unzip the download and boot an iPhone in Simulator. Run these commands from the extracted folder with one simulator booted.
 
@@ -29,7 +29,15 @@ xcrun simctl launch booted com.jackadamslovell.Tapp
 
 The app opens without an access code. To try live AI, open **Settings → Account**, paste the privately supplied **Tapp access code**, then tap **Connect Tapp**. When the account shows **Connected**, return to chat. This build runs in Simulator. For the physical iPhone flow, see the [recorded Spotify demo](demo-footage/Tapp-Spotify-Phone-Capture.mp4). The team's physical-device setup uses Developer Mode and Wi-Fi.
 
-[Matching iOS source at `c6ad854`](https://github.com/adamsjack711-ux/tapp-ios/tree/c6ad85483fcb02bd4c62ec836f6b40dca1d16275) (requires access to the private iOS repository).
+### Publish a new preview
+
+From the AppFusion checkout, run the command below with a committed revision from the Tapp iOS integration line. The command uses your GitHub CLI sign-in and requires write access to the private iOS and AppFusion repositories.
+
+```sh
+bash tapp/publish-preview.sh ~/Documents/Codex/Tapp/tapp-local-ios HEAD
+```
+
+It builds the selected commit, publishes a versioned ZIP, and updates the **Current build** link on the same release page. Earlier ZIPs remain available under Assets.
 
 ## Presentation files
 
