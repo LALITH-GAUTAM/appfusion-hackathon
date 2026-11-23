@@ -1,20 +1,25 @@
-# Tapp
+# ![tapp](tapp/wordmark.png)
 
-Tell your iPhone what you want to find. Tapp follows the request inside the app, using what’s on screen to find the next control. For AppFusion, the example is a voice search for Daft Punk in Spotify.
+**A voice assistant for your iPhone.** Ask Tapp to find an artist in Spotify. It opens the app, enters the name, and checks the results on screen.
 
-[Try the iOS simulator preview](tapp/README.md#download-and-run-tapp)
+[Try the iOS preview](tapp/README.md#download-and-run-tapp) · [Watch the 20-second demo](tapp/demo-footage/Tapp-In-Action-Refined-Split.mp4) · [View the pitch deck](tapp/Tapp-AppFusion.pptx)
 
-<a href="tapp/screenshots/appfusion-home.png"><img src="tapp/screenshots/appfusion-home.png" alt="Tapp home screen showing “How can I help?”, the Message Tapp field, and the microphone button" width="300"></a>
+## Inside Tapp
 
-*AppFusion preview on iPhone 17 Pro Simulator, November 23.*
+<table>
+  <tr><th width="33%">Welcome</th><th width="33%">Home</th><th width="33%">Write a request</th></tr>
+  <tr>
+    <td><a href="tapp/screenshots/appfusion-welcome.png"><img src="tapp/screenshots/appfusion-welcome.png" alt="Tapp’s welcome screen with Get started and Explore first"></a></td>
+    <td><a href="tapp/screenshots/appfusion-home.png"><img src="tapp/screenshots/appfusion-home.png" alt="Tapp’s home screen with the message field and microphone"></a></td>
+    <td><a href="tapp/screenshots/appfusion-request.png"><img src="tapp/screenshots/appfusion-request.png" alt="A Spotify search request in the dark-mode composer"></a></td>
+  </tr>
+</table>
 
-## Demo
-
-The [20-second Spotify recording](tapp/demo-footage/Tapp-In-Action-Refined-Split.mp4) shows the voice request through to the matching artist. It was recorded on an iPhone on October 30 with the earlier interface.
+All three screens are from the November 23 AppFusion simulator preview. The last shows an unsent request. The linked video shows the completed Spotify search on an iPhone using the October 30 interface.
 
 ## Team resources
 
-[Submission notes and device checks](tapp/README.md) · [Pitch deck](tapp/Tapp-AppFusion.pptx)
+[Submission notes and device checks](tapp/README.md)
 
 <details>
 <summary><strong>Event schedule, submission checklist, and judging rubric</strong></summary>

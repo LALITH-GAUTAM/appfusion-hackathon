@@ -43,7 +43,7 @@ It builds the selected commit, publishes a versioned ZIP, and updates the **Curr
 
 - [Editable four-slide deck](Tapp-AppFusion.pptx)
 - [Existing iPhone footage and editing notes](demo-footage/)
-- [November 23 home screen from the AppFusion simulator preview](screenshots/appfusion-home.png)
+- [November 23 simulator gallery](../README.md#inside-tapp) · Welcome, home, and the dark-mode composer
 - October 30 iPhone recording stills · [Voice request](screenshots/01-voice-request.png) · [Spotify Search](screenshots/02-spotify-search.png) · [Matching results](screenshots/03-search-results.png)
 
 ## Verification so far
