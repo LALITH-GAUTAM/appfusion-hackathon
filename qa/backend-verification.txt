@@ -1,0 +1,54 @@
+AppFusion receipt-to-meal backend verification
+Nov 22, 2026, Kamloops time
+Backend integration/backend-demo at dc4aca4a02164a6d1ae12e1cbed52b31e630d54e
+
+Setup
+- Use grocery-receipt-0042.png from qa/fixtures.
+- Run core and AI on loopback with a new CORE_DATA_FILE. Use Node 26,
+  Tesseract with English data, and Ollama gpt-oss:20b.
+- Route the core-to-AI call through a local test proxy. The proxy
+  records the forwarded inventory and can return a controlled 503.
+- Also launched both documented CLI entry points on unused local
+  ports. Stopping and restarting the AI process produced public
+  503 and then 200 without changing inventory.
+
+Public API verification
+- GET /api/inventory returned an empty list on a fresh data file.
+- POST /api/meals returned 409 EMPTY_INVENTORY, before calling AI.
+- Malformed scan JSON and a zero-quantity confirmation returned 400
+  INVALID_INPUT. A valid blank PNG returned 422 RECEIPT_UNREADABLE.
+  None of these requests changed the inventory.
+- POST /api/receipts with the fixture returned 201 and identified
+  EGGS LRG, SPINACH, and RICE, each with quantity 1 and unit each.
+- Edited the saved names to Eggs, Spinach, and Rice. For the first
+  POST /api/receipts/{receiptId}/confirm, a local relay consumed
+  the server's 200 and closed the downstream connection before
+  delivering it to the client. Retrying the same receipt and items
+  returned 200. A fresh inventory read returned exactly three rows,
+  each with quantity 1. A changed retry returned 409
+  RECEIPT_ALREADY_CONFIRMED and left the same inventory.
+- The controlled AI outage returned public 503
+  MEAL_SERVICE_UNAVAILABLE. The inventory was unchanged.
+- With the outage cleared, POST /api/meals with {} recovered to
+  200 in 3.17 seconds with the local model. The proxy saw the
+  confirmed names and quantities that GET /api/inventory returned.
+
+AI regression checks
+- Revision 3ee088f8c9a61273bac9af34ce90e54b97aed8d5 replaced
+  b44ea4b. All 7 AI tests passed on 3ee088f.
+- The live model returned Spinach Egg Fried Rice from Eggs,
+  Spinach, and Rice. It started by cooking the dry rice in plain
+  water. The optional list was empty and the steps used no extras.
+- Controlled provider tests returned 200 for an 81-character name,
+  41 items, and 100 items with 100-character names. The AI adapter
+  accepted the full request and passed at most 40 entries to
+  Ollama. These boundary checks used a stubbed provider response.
+
+Pending mobile and submission checks
+- Partner UI build/ref and launch or install instructions, including
+  the API base URL. A dedicated iPhone 17 simulator has the valid
+  and unreadable images. Device offline behavior and UI error
+  recovery will be tested there.
+- Capture the demo video and four screenshots after the UI pass.
+  Verify playback and each image from a signed-out browser using
+  the actual submission Drive folder URL.
