@@ -1,18 +1,31 @@
+![Tapp’s lavender cursor mascot beside the Tapp wordmark](tapp/readme-cover.jpg)
+
 # Tapp at AppFusion
 
-Tapp helps iPhone users who prefer voice input search inside an app. In the AppFusion demo, the user says **“Open up Spotify and search for Daft Punk.”** Tapp opens Spotify, finds Search, types the artist’s name, and leaves the matching results on screen.
+Tapp helps iPhone users who prefer voice input search inside an app. Tell it what you’re looking for, and it uses the current screen to decide where to tap and checks that the results appear.
 
-**Category** · Community and Accessibility
+**[Watch the 20-second demo](tapp/demo-footage/Tapp-In-Action-Refined-Split.mp4)** · [Try the simulator preview](tapp/README.md#download-and-run-tapp) · [View the pitch deck](tapp/Tapp-AppFusion.pptx)
 
-**Role of AI** · Tapp interprets the spoken request and uses what’s on screen to choose and check its next action.
+## From a voice request to Spotify results
 
-## See it work
+> “Open up Spotify and search for Daft Punk.”
 
-- [Watch the 20-second demo](tapp/demo-footage/Tapp-In-Action-Refined-Split.mp4) or [view the three screenshots](tapp/screenshots/). Both come from the October 30 physical iPhone run. The video shortens the waits.
-- [Try the simulator preview](tapp/README.md#download-and-run-tapp). It opens without an access code. Live AI requires a tester code, and the preview download requires repository access.
-- [Open the pitch deck](tapp/Tapp-AppFusion.pptx) or [read the submission notes and final device checks](tapp/README.md). The notes distinguish the pre-event app from the work prepared for AppFusion.
+[![Three iPhone screens in sequence. Tapp hears the request, opens Spotify Search, and enters Daft Punk. The matching artist appears at the top of the results.](tapp/readme-demo.jpg)](tapp/screenshots/)
 
-## Deadlines · Kamloops time
+The October 30 iPhone recording follows the request through to the search results. The 20-second edit shortens the waits. [View the full-size screenshots](tapp/screenshots/)
+
+**AppFusion category** · Community and Accessibility
+
+**Simulator access** · The preview requires repository access. The app opens without a code. Live AI requires a tester code.
+
+## Team resources
+
+[Submission notes and final device checks](tapp/README.md) · [Demo footage and editing notes](tapp/demo-footage/README.md)
+
+<details>
+<summary><strong>Event schedule, submission checklist, and judging rubric</strong></summary>
+
+### Deadlines · Kamloops time
 
 | When | What |
 | --- | --- |
@@ -22,7 +35,7 @@ Tapp helps iPhone users who prefer voice input search inside an app. In the AppF
 
 [Event page](https://aiclubtrusu.vercel.app/events/appfusion) · [Official student guide](https://aiclubtrusu.vercel.app/events/appfusion/guide) · [Submission form](https://aiclubtrusu.vercel.app/events/appfusion/submit)
 
-## Build requirements
+### Build requirements
 
 - [x] Select the audience, problem, and category. Tapp helps iPhone users who prefer voice input complete an in-app search hands-free.
 - [ ] Build a mobile app that runs on a phone or emulator. An installable web app (PWA) qualifies.
@@ -30,7 +43,7 @@ Tapp helps iPhone users who prefer voice input search inside an app. In the AppF
 - [ ] Test the main flow, bad input, and connectivity or AI failures. Write down what changed after testing.
 - [ ] If reusing an app or course project, document what existed before Nov 20 and what changed during the hackathon. Existing AI models and AI coding tools are allowed.
 
-## Submission checklist
+### Submission checklist
 
 - [ ] Team name, both full names, and a contact email.
 - [x] App name, category, and problem statement are in the [submission copy](tapp/README.md#submission-copy).
@@ -39,7 +52,7 @@ Tapp helps iPhone users who prefer voice input search inside an app. In the AppF
 - [ ] One Google Drive folder with a **2–3 minute demo video**, **3–5 screenshots**, and optional slides. Set access to **Anyone with the link can view** and test the links in a private window.
 - [ ] Submit by **2 p.m.** The form allows resubmissions before the deadline and uses the latest entry.
 
-## Presentation and judging
+### Presentation and judging
 
 You have **5 minutes total**, including the recorded demo, followed by **2 minutes of Q&A**. Organizers play the submitted files. Use the demo to show the working core feature and the AI in one flow. Be ready to explain why the AI belongs in the app, how it was tested, and its limits.
 
@@ -52,3 +65,5 @@ You have **5 minutes total**, including the recorded demo, followed by **2 minut
 | Presentation and demonstration | 15 |
 
 [Full judging rubric](https://aiclubtrusu.vercel.app/events/appfusion/guide#criterion-A)
+
+</details>
