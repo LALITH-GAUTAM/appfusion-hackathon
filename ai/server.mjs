@@ -2,7 +2,7 @@ import { createServer } from 'node:http';
 import { pathToFileURL } from 'node:url';
 import { MealSuggestionError, suggestMeal } from './meal-suggestion.mjs';
 
-const MAX_BODY_BYTES = 32 * 1024;
+const MAX_BODY_BYTES = 128 * 1024;
 const MEAL_PATH = '/meal-suggestion';
 
 const MEAL_ERROR_STATUS = {
@@ -38,7 +38,7 @@ async function handleMeal(request, response, mealOptions) {
     if (bytes > MAX_BODY_BYTES) {
       response.setHeader('Connection', 'close');
       request.resume();
-      return sendError(response, 413, 'BODY_TOO_LARGE', 'The request body exceeds 32 KiB.');
+      return sendError(response, 413, 'BODY_TOO_LARGE', 'The request body exceeds 128 KiB.');
     }
     chunks.push(chunk);
   }

@@ -24,35 +24,35 @@ The private service binds to loopback and calls Ollama at `http://127.0.0.1:1143
 ```sh
 curl --fail-with-body --max-time 35 \
   -H 'Content-Type: application/json' \
-  -d '{"items":[{"name":"eggs","quantity":2,"unit":"each"},{"name":"spinach","quantity":1,"unit":"cup"},{"name":"cooked rice","quantity":1,"unit":"cup"}]}' \
+  -d '{"items":[{"name":"Eggs","quantity":1,"unit":"each"},{"name":"Spinach","quantity":1,"unit":"each"},{"name":"Rice","quantity":1,"unit":"each"}]}' \
   http://127.0.0.1:8788/meal-suggestion
 ```
 
-A real call returned HTTP 200 in 16.3 seconds on the development Mac:
+A real call with that inventory returned HTTP 200 in 4.50 seconds on the development Mac with the model already loaded:
 
 ```json
 {
-  "title": "Spinach‑Egg Rice Skillet",
-  "ingredientsOnHand": ["eggs", "spinach", "cooked rice"],
-  "optionalMissingIngredients": ["salt", "pepper", "cheese"],
+  "title": "Spinach Egg Fried Rice",
+  "ingredientsOnHand": ["Eggs", "Spinach", "Rice"],
+  "optionalMissingIngredients": [],
   "steps": [
-    "Heat a small skillet over medium heat.",
-    "Add the spinach and cook until wilted, about 1‑2 min.",
-    "Beat the eggs in a bowl, pour into the skillet, and scramble until just set.",
-    "Fold in the cooked rice, stirring to combine and heat through.",
-    "If you like, season with salt and pepper (or sprinkle cheese on top)."
+    "Cook the rice in plain water until tender, then set aside.",
+    "Heat a nonstick pan over medium heat.",
+    "Add the spinach to the pan and stir until wilted.",
+    "Push spinach to the side, crack the egg into the pan, scramble until set, then mix with spinach.",
+    "Fold in the cooked rice, stir until everything is heated through, and serve."
   ]
 }
 ```
 
-Inventory accepts 1–40 items. Names and units are trimmed and capped at 80 and 40 characters. Quantities must be finite positive numbers. The response includes up to ten exact inventory names, zero to three optional extras, and one to five steps.
+Inventory accepts 1–100 items. Names and units are trimmed and capped at 100 and 40 characters. Quantities must be finite positive numbers and can exceed the per-receipt limit after aggregation. The model sees the first 40 items in request order. The response includes up to ten exact inventory names, zero to three optional extras, and one to five required steps. Optional extras appear in their own list. Plain water for cooking is assumed available.
 
 | Status | Error code | Condition |
 | --- | --- | --- |
 | 400 | `INVALID_JSON` | Malformed JSON |
 | 400 | `EMPTY_INVENTORY` | The items array is empty |
-| 400 | `INVALID_INVENTORY` | Inventory is missing, exceeds 40 items, or contains an invalid name, quantity, or unit |
-| 413 | `BODY_TOO_LARGE` | Body exceeds 32 KiB |
+| 400 | `INVALID_INVENTORY` | Inventory is missing, exceeds 100 items, or contains an invalid name, quantity, or unit |
+| 413 | `BODY_TOO_LARGE` | Body exceeds 128 KiB |
 | 415 | `UNSUPPORTED_MEDIA_TYPE` | Request lacks an `application/json` content type |
 | 502 | `AI_UNAVAILABLE` | Ollama is unreachable, returns an error, or produces incomplete or invalid output |
 | 504 | `AI_TIMEOUT` | Ollama does not finish within 30 seconds |
@@ -71,10 +71,10 @@ Core reports provider failures through the public API as HTTP 503 with `error.co
 node --test ai/server.test.mjs
 ```
 
-The automated tests start the private HTTP service and stub Ollama to verify validation, provider errors, invented and truncated output, and a timeout during the response body. Run the curl command above separately with Ollama running to verify real inference.
+The seven automated tests start the private HTTP service and stub Ollama. They exercise inventory validation, provider errors, response truncation, a timeout during the response body, and the regression for dry rice and required extras. Run the curl command above separately with Ollama running to verify real inference. A separate live request with 100 inventory rows returned HTTP 200 in 4.41 seconds.
 
 ## Demo and judging notes
 
-- This feature uses `gpt-oss:20b` through local Ollama. Only normalized inventory goes into the prompt. Receipt images and raw receipt text stay outside the meal service.
-- Runtime validation checks the response shape and matches the named on-hand ingredients to the inventory. The generated steps can still make mistakes about quantities, allergens, or cooking instructions. Treat the result as a suggestion.
+- This feature uses `gpt-oss:20b` through local Ollama. The model sees up to 40 normalized inventory items. Receipt images and raw receipt text stay outside the meal service.
+- Runtime validation checks the response shape, matches on-hand names to the inventory, and checks for specific recipe errors like unlisted oil or missing rice preparation. The generated steps can still make mistakes about quantities, allergens, or cooking instructions. Treat the result as a suggestion.
 - Startup adds model-loading latency. Run one suggestion on the demo host before recording. Keep Ollama and the meal service running while testing the phone flow.
