@@ -2,6 +2,43 @@
 
 Team workspace for the TRUSU AI Club’s AppFusion hackathon.
 
+## Wellness fridge demo
+
+Scan a grocery receipt, correct the proposed items, add them to your fridge, and generate a meal idea from the saved inventory. The UI calls the [core HTTP API](core/README.md). Core calls the [local AI meal service](ai/README.md).
+
+### Run both backends
+
+Install Node.js 22+, Tesseract with English language data, and Ollama. Use separate terminals from this checkout.
+
+```sh
+ollama serve
+```
+
+```sh
+ollama pull gpt-oss:20b
+node ai/server.mjs
+```
+
+```sh
+fridge_demo_dir="$(mktemp -d)"
+CORE_DATA_FILE="$fridge_demo_dir/fridge.json" \
+CORE_CORS_ORIGINS=http://localhost:5173,http://127.0.0.1:5173 \
+MEAL_SERVICE_URL=http://127.0.0.1:8788/meal-suggestion \
+node core/server.mjs
+```
+
+The UI connects to `http://127.0.0.1:8787`. For a phone on the same trusted network, use `CORE_HOST=0.0.0.0` and the computer's LAN IP. For a browser frontend on a different origin, include its exact origin in `CORE_CORS_ORIGINS`.
+
+### Verify the flow
+
+Follow the [QA receipt fixture](qa/fixtures/grocery-receipt-0042-expected.txt). The [core API guide](core/README.md#run-locally) includes the receipt upload command. Confirm the corrected items with the receipt ID from that upload, then call `GET /api/inventory` to check the saved items.
+
+```sh
+curl -sS -H 'Content-Type: application/json' -d '{}' http://127.0.0.1:8787/api/meals
+```
+
+To check recovery, stop the AI server and repeat the meal request. Expect a `503 MEAL_SERVICE_UNAVAILABLE` response. Verify that `GET /api/inventory` still returns the saved items, restart the AI server with `node ai/server.mjs`, and retry the meal request.
+
 ## Deadlines · Kamloops time
 
 | When | What |
