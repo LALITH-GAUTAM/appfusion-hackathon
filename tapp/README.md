@@ -16,6 +16,21 @@ Tapp is an iPhone assistant for people who prefer speaking a request to tapping 
 
 **What changed during AppFusion:** This branch adds editing footage, screenshots, an editable pitch deck, and a repeatable acceptance and recording plan. Before filing, add the exact app changes made during the event and the build or commit that contains them.
 
+## Download and run Tapp
+
+Get `Tapp-iOS-Simulator.zip` from the [AppFusion preview release](https://github.com/LALITH-GAUTAM/appfusion-hackathon/releases/tag/tapp-appfusion-preview). GitHub access to this private repository is required.
+
+On an Apple silicon Mac with Xcode 27.1 and an iOS 27 simulator, unzip the download and boot an iPhone in Simulator. Run these commands from the extracted folder with one simulator booted.
+
+```sh
+xcrun simctl install booted ./Tapp.app
+xcrun simctl launch booted com.jackadamslovell.Tapp
+```
+
+The app opens without an access code. Live AI features require a configured model account. This build runs in Simulator. For the physical iPhone flow, see the [recorded Spotify demo](demo-footage/Tapp-Spotify-Phone-Capture.mp4). The team's physical-device setup uses Developer Mode and Wi-Fi.
+
+[Matching iOS source at `c6ad854`](https://github.com/adamsjack711-ux/tapp-ios/tree/c6ad85483fcb02bd4c62ec836f6b40dca1d16275) (requires access to the private iOS repository).
+
 ## Presentation files
 
 - [Editable four-slide deck](Tapp-AppFusion.pptx)
