@@ -1,6 +1,6 @@
 # Tapp at AppFusion
 
-Tapp is an iPhone assistant for people who prefer speaking a request to tapping through several menus. The proposed category is **Community and Accessibility**.
+Tapp is an iPhone assistant for people who prefer speaking a request to tapping through several menus. The AppFusion category is **Community and Accessibility**.
 
 ## Submission copy
 
@@ -14,7 +14,7 @@ Tapp is an iPhone assistant for people who prefer speaking a request to tapping 
 
 **What existed before November 20:** The Tapp iOS app and backend, voice input, phone-task navigation and verification, including the recorded Spotify flow.
 
-**What changed during AppFusion:** This branch adds editing footage, screenshots, an editable pitch deck, and a repeatable acceptance and recording plan. Before filing, add the exact app changes made during the event and the build or commit that contains them.
+**What changed during AppFusion:** The AppFusion materials include editing footage, screenshots, an editable pitch deck, and a repeatable acceptance and recording plan. Before filing, add the exact app changes made during the event and the build or commit that contains them.
 
 ## Download and run Tapp
 
