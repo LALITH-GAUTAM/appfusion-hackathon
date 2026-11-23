@@ -27,7 +27,7 @@ xcrun simctl install booted ./Tapp.app
 xcrun simctl launch booted com.jackadamslovell.Tapp
 ```
 
-The app opens without an access code. Live AI features require a configured model account. This build runs in Simulator. For the physical iPhone flow, see the [recorded Spotify demo](demo-footage/Tapp-Spotify-Phone-Capture.mp4). The team's physical-device setup uses Developer Mode and Wi-Fi.
+The app opens without an access code. To try live AI, open **Settings → Account**, paste the privately supplied **Tapp access code**, then tap **Connect Tapp**. When the account shows **Connected**, return to chat. This build runs in Simulator. For the physical iPhone flow, see the [recorded Spotify demo](demo-footage/Tapp-Spotify-Phone-Capture.mp4). The team's physical-device setup uses Developer Mode and Wi-Fi.
 
 [Matching iOS source at `c6ad854`](https://github.com/adamsjack711-ux/tapp-ios/tree/c6ad85483fcb02bd4c62ec836f6b40dca1d16275) (requires access to the private iOS repository).
 
