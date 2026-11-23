@@ -65,3 +65,32 @@ Errors include a stable code and a displayable message.
 ```json
 {"error":{"code":"MEAL_SERVICE_UNAVAILABLE","message":"Meal suggestions are temporarily unavailable."}}
 ```
+
+## Run locally
+
+Requires Node.js 22+ and Tesseract with English language data. On macOS, install Tesseract with `brew install tesseract`. On Debian or Ubuntu, install `tesseract-ocr` and `tesseract-ocr-eng`.
+
+Start the AI service with `node ai/server.mjs` from a checkout containing the AI backend, with its model configured as described in `ai/README.md`. Then start core from the repo root.
+
+```sh
+CORE_CORS_ORIGINS=http://localhost:5173,http://127.0.0.1:5173 \
+MEAL_SERVICE_URL=http://127.0.0.1:8788/meal-suggestion \
+node core/server.mjs
+```
+
+The API base URL is `http://127.0.0.1:8787`. Set `CORE_CORS_ORIGINS` to the browser frontend's exact origin or comma-separated origins. A frontend served on the same origin can omit it. For a test phone on the same trusted network, start core with `CORE_HOST=0.0.0.0` and use `http://<computer-LAN-IP>:8787` from the phone. Include the frontend's LAN origin in the CORS list for a browser-based frontend. The core server is intended for a single demo fridge on a trusted machine or network.
+
+Inventory and confirmation IDs persist in `core/.data/fridge.json`. Set `CORE_DATA_FILE` to a new file path for an empty demo or QA fridge. Use one core process per data file. Receipt images are temporarily written for OCR and removed when scanning completes. The OCR parser uses English receipt text and priced lines; the review step lets users fix abbreviations, counts, and missed rows.
+
+Core sends up to 100 inventory entries to the AI service, with entries from the most recent confirmations first. The AI prompt can use up to 40 of those entries. Inventory storage and `GET /api/inventory` retain the full list.
+
+To upload a fixture through the same HTTP API used by the frontend, run the following from a checkout containing the QA fixture.
+
+```sh
+node --input-type=module -e '
+  import { readFileSync } from "node:fs";
+  const imageBase64 = readFileSync(process.argv[1]).toString("base64");
+  process.stdout.write(JSON.stringify({ imageBase64 }));
+' qa/fixtures/grocery-receipt-0042.png |
+  curl -sS -H 'Content-Type: application/json' --data-binary @- http://127.0.0.1:8787/api/receipts
+```
